@@ -4,12 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <%= title %>
+        Foglalások
     </title>
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h1><%= title %></h1>
-    Hello EJS!
+    <h1>Mozis foglalások</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Név</td>
+                <td>Email</td>
+                <td>Dátum</td>
+                <td>Nézők</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% foglalasok.forEach(element => {%>
+                <tr>
+                    <td><%= element.id %></td>
+                    <td><%= element.name %></td>
+                    <td><%= element.email %></td>
+                    <td><%= element.startDate %></td>
+                    <td><%= element.guests %></td>
+                </tr>
+            <% }); %>
+
+            
+        </tbody>
+    </table>
+    <form method="post">
+        <label for="nev">Név*:</label>
+        <input type="text" name="nev">
+        <label for="email">Email cím*:</label>
+        <input type="text" name="email">
+        <label for="startDate">Dátum*:</label>
+        <input type="datetime-local" name="startDate">
+        <label for="guests">Nézők*:</label>
+        <input type="text" name="guests">
+        <button type="submit">Felvétel</button>
+    </form>
+    <% error.forEach(element => {%>
+        <p style="color: red;"><%= element %></p>
+    <%}); %>
+    <p style="color: green;">
+        <%= success %>
+    </p>
 </body>
 </html>
